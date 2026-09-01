@@ -282,6 +282,12 @@ function ModuleEditor({
 
 /* ---------- página ---------- */
 
+/** Modelo padrão da Softplus: modelo 3 (desconto + opcionais). */
+const modelo3 = (): ProposalData =>
+  structuredClone(
+    (scenarios.find((s) => s.id === "promocional") ?? scenarios[0]).data,
+  ) as ProposalData;
+
 function GeneratorPage() {
   const { id } = Route.useSearch();
   const navigate = useNavigate();
