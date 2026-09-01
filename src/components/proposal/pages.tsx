@@ -175,11 +175,14 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
           </div>
         </div>
 
-        <ModuleImageSlot
-          label="Imagem institucional"
-          ratio="min-h-[46mm]"
-          image={data.meta.coverImage?.src ? undefined : undefined}
-        />
+        <div className="border-line bg-card flex items-center justify-center overflow-hidden rounded-2xl border p-3">
+          <img
+            src={ecosystemAsset.url}
+            alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+            className="max-h-[46mm] w-full object-contain"
+          />
+        </div>
+
       </div>
     </PageContainer>
   );
@@ -213,16 +216,18 @@ export function SolutionPage({
         </>
       )}
 
-      <div>
+      <div className="flex min-h-0 flex-1 flex-col">
+
         <h3 className="text-navy-deep keep-with-next text-[10px] font-bold tracking-[0.2em] uppercase">
           Recursos inclusos no plano
         </h3>
-        <div className="mt-3 grid grid-cols-2 gap-3">
+        <div className="mt-3 grid flex-1 auto-rows-fr grid-cols-2 gap-3">
           {features.map((f) => (
             <FeatureCard key={f.id} module={f} />
           ))}
         </div>
       </div>
+
     </PageContainer>
   );
 }
@@ -248,7 +253,8 @@ export function ModulesPage({
                 "Módulos adicionais já contratados nesta proposta e somados à mensalidade.",
             })}
       />
-      <div className="grid grid-cols-3 gap-3.5">
+      <div className="my-auto grid grid-cols-3 gap-3.5">
+
         {modules.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
@@ -271,7 +277,7 @@ export function OptionalsPage({
         title="Módulos opcionais, quando fizer sentido"
         description="Sugestões que não estão inclusas nesta contratação e não compõem o total mensal. Podem ser ativadas a qualquer momento."
       />
-      <div className="grid grid-cols-2 gap-3.5">
+      <div className="my-auto grid grid-cols-2 gap-3.5">
         {modules.map((m) => (
           <OptionalModuleCard key={m.id} module={m} />
         ))}
@@ -331,53 +337,56 @@ export function ClosingPage({
       />
       <FinalSummary data={data} totals={totals} />
 
-      <div className="avoid-break relative min-h-0 flex-1 overflow-hidden rounded-2xl">
-        <img
-          src={ecosystemAsset.url}
-          alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
-          className="absolute inset-0 size-full object-cover"
-        />
-      </div>
+      <div className="grid min-h-0 flex-1 grid-cols-[1.15fr_0.85fr] gap-3.5">
+        <div className="flex min-h-0 flex-col gap-3.5">
+          <div className="border-line bg-card shadow-card rounded-2xl border p-4">
+            <h3 className="text-navy-deep font-display text-[12px] font-bold">Próximos passos</h3>
+            <ol className="mt-3 grid gap-2">
+              {[
+                "Aprovação desta proposta",
+                "Assinatura do contrato e pagamento da implantação",
+                "Agendamento da instalação e treinamento",
+                "Go-live acompanhado pela equipe Softplus",
+              ].map((s, i) => (
+                <li key={s} className="text-ink flex items-start gap-2.5 text-[10.5px]">
+                  <span className="bg-navy text-primary-foreground grid size-4 shrink-0 place-items-center rounded-full text-[8px] font-bold">
+                    {i + 1}
+                  </span>
+                  {s}
+                </li>
+              ))}
+            </ol>
+          </div>
 
-      <div className="grid grid-cols-2 gap-3.5">
-        <div className="border-line bg-card shadow-card rounded-2xl border p-4">
-          <h3 className="text-navy-deep font-display text-[12px] font-bold">Próximos passos</h3>
-          <ol className="mt-3 grid gap-2">
-            {[
-              "Aprovação desta proposta",
-              "Assinatura do contrato e pagamento da implantação",
-              "Agendamento da instalação e treinamento",
-              "Go-live acompanhado pela equipe Softplus",
-            ].map((s, i) => (
-              <li key={s} className="text-ink flex items-start gap-2.5 text-[10.5px]">
-                <span className="bg-navy text-primary-foreground grid size-4 shrink-0 place-items-center rounded-full text-[8px] font-bold">
-                  {i + 1}
-                </span>
-                {s}
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-4">
-          <div className="halo-graphic absolute inset-0" />
-          <div className="relative">
-            <SoftplusLogo tone="light" />
-            <p className="text-cyan-soft mt-4 text-[10.5px] leading-relaxed">
-              Fale com o seu consultor para ajustar qualquer ponto desta proposta.
-            </p>
-            <div className="text-primary-foreground mt-4 text-[12px] font-bold">
-              {data.meta.consultant}
-            </div>
-            <div className="text-cyan-soft text-[10px]">{data.meta.consultantContact}</div>
-            {data.conditions.validUntil ? (
-              <div className="bg-cyan-soft/15 text-cyan-soft mt-5 rounded-xl px-3 py-2 text-[9.5px] font-semibold">
-                Proposta válida até {data.conditions.validUntil}
+          <div className="bg-gradient-navy relative flex-1 overflow-hidden rounded-2xl p-4">
+            <div className="halo-graphic absolute inset-0" />
+            <div className="relative">
+              <SoftplusLogo tone="light" />
+              <p className="text-cyan-soft mt-3 text-[10.5px] leading-relaxed">
+                Fale com o seu consultor para ajustar qualquer ponto desta proposta.
+              </p>
+              <div className="text-primary-foreground mt-3 text-[12px] font-bold">
+                {data.meta.consultant}
               </div>
-            ) : null}
+              <div className="text-cyan-soft text-[10px]">{data.meta.consultantContact}</div>
+              {data.conditions.validUntil ? (
+                <div className="bg-cyan-soft/15 text-cyan-soft mt-3 inline-block rounded-xl px-3 py-2 text-[9.5px] font-semibold">
+                  Proposta válida até {data.conditions.validUntil}
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
+
+        <div className="avoid-break border-line bg-card flex min-h-0 items-center justify-center overflow-hidden rounded-2xl border p-2">
+          <img
+            src={ecosystemAsset.url}
+            alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+            className="h-full w-full object-contain"
+          />
+        </div>
       </div>
+
     </PageContainer>
   );
 }

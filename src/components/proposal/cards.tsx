@@ -44,9 +44,11 @@ export function ModuleCard({ module }: { module: ProposalModule }) {
   const hasDiscount = list > negotiated;
 
   return (
-    <article className="avoid-break border-line bg-card shadow-card overflow-hidden rounded-2xl border">
-      <ModuleImageSlot image={module.image} label={module.name} ratio="aspect-[16/5]" />
-      <div className="flex flex-col gap-1.5 p-3">
+    <article className="avoid-break border-line bg-card shadow-card flex h-full flex-col overflow-hidden rounded-2xl border">
+      <ModuleImageSlot image={module.image} label={module.name} ratio="aspect-[16/7]" />
+      <div className="flex flex-1 flex-col gap-1.5 p-3">
+
+
         <div className="flex items-start gap-3">
           <ModuleIcon name={module.icon} />
           <div className="min-w-0 flex-1">
@@ -90,7 +92,7 @@ export function OptionalModuleCard({ module }: { module: ProposalModule }) {
   const { negotiated } = moduleTotals(module);
 
   return (
-    <article className="avoid-break border-cyan/30 bg-cyan-soft/35 relative overflow-hidden rounded-2xl border border-dashed p-3.5">
+    <article className="avoid-break border-cyan/30 bg-cyan-soft/35 relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed p-3.5">
       <div className="flex items-start gap-3">
         <ModuleIcon name={module.icon} tone="navy" />
         <div className="min-w-0 flex-1">
@@ -100,7 +102,8 @@ export function OptionalModuleCard({ module }: { module: ProposalModule }) {
           <p className="text-navy-soft mt-1 text-[10px] leading-snug">{module.description}</p>
         </div>
       </div>
-      <div className="border-cyan/25 mt-3 flex items-center justify-between border-t pt-2.5">
+      <div className="border-cyan/25 mt-auto flex items-center justify-between border-t pt-2.5">
+
         <span className="text-navy-soft inline-flex items-center gap-1 text-[8.5px] font-bold tracking-[0.14em] uppercase">
           <Sparkles className="size-3" strokeWidth={2.4} /> Opcional
         </span>
