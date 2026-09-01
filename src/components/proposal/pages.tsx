@@ -217,15 +217,17 @@ export function SolutionPage({
       )}
 
       <div>
+      <div className="flex min-h-0 flex-1 flex-col">
         <h3 className="text-navy-deep keep-with-next text-[10px] font-bold tracking-[0.2em] uppercase">
           Recursos inclusos no plano
         </h3>
-        <div className="mt-3 grid grid-cols-2 gap-3">
+        <div className="mt-3 grid flex-1 auto-rows-fr grid-cols-2 gap-3">
           {features.map((f) => (
             <FeatureCard key={f.id} module={f} />
           ))}
         </div>
       </div>
+
     </PageContainer>
   );
 }
