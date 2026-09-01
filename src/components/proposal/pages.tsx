@@ -331,13 +331,21 @@ export function ClosingPage({
 }) {
   void data;
   void totals;
+  void meta;
   return (
-    <PageContainer variant="bleed">
-      <img
-        src={ecosystemAsset.url}
-        alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
-        className="size-full min-h-0 flex-1 object-contain"
-      />
+    <PageContainer
+      variant="bleed"
+      className="flex flex-col items-center justify-center bg-background p-[12mm] print:bg-card"
+    >
+      <div className="bg-card flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-line p-[8mm] shadow-hero">
+        <div className="relative flex flex-1 items-center justify-center overflow-hidden rounded-[20px] bg-surface">
+          <img
+            src={ecosystemAsset.url}
+            alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+            className="max-h-full max-w-full object-contain"
+          />
+        </div>
+      </div>
     </PageContainer>
   );
 }
