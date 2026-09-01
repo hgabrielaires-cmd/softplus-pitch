@@ -44,9 +44,12 @@ export function ModuleCard({ module }: { module: ProposalModule }) {
   const hasDiscount = list > negotiated;
 
   return (
-    <article className="avoid-break border-line bg-card shadow-card overflow-hidden rounded-2xl border">
-      <ModuleImageSlot image={module.image} label={module.name} ratio="aspect-[16/5]" />
+    <article className="avoid-break border-line bg-card shadow-card flex h-full flex-col overflow-hidden rounded-2xl border">
+      <div className="flex min-h-[24mm] flex-1 flex-col">
+        <ModuleImageSlot image={module.image} label={module.name} ratio="h-full min-h-[24mm]" />
+      </div>
       <div className="flex flex-col gap-1.5 p-3">
+
         <div className="flex items-start gap-3">
           <ModuleIcon name={module.icon} />
           <div className="min-w-0 flex-1">
