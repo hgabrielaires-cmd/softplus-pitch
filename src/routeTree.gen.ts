@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GerarRouteImport } from './routes/gerar'
 import { Route as PrintRouteImport } from './routes/print'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GerarRoute = GerarRouteImport.update({
+  id: '/gerar',
+  path: '/gerar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrintRoute = PrintRouteImport.update({
@@ -25,27 +31,31 @@ const PrintRoute = PrintRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/print'
+  fullPaths: '/' | '/gerar' | '/print'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/print'
-  id: '__root__' | '/' | '/print'
+  to: '/' | '/gerar' | '/print'
+  id: '__root__' | '/' | '/gerar' | '/print'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GerarRoute: typeof GerarRoute
   PrintRoute: typeof PrintRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gerar': {
+      id: '/gerar'
+      path: '/gerar'
+      fullPath: '/gerar'
+      preLoaderRoute: typeof GerarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/print': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GerarRoute: GerarRoute,
   PrintRoute: PrintRoute,
 }
 export const routeTree = rootRouteImport

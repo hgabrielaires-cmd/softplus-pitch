@@ -2,7 +2,8 @@ import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { ProposalDocument } from "@/components/proposal/ProposalDocument";
-import type { ProposalData } from "@/types/proposal";
+import { decodeProposalData } from "@/lib/proposal-codec";
+
 
 const printSearchSchema = z.object({
   data: z.string().optional(),
@@ -29,15 +30,7 @@ export const Route = createFileRoute("/print")({
   component: PrintPage,
 });
 
-function decodeProposalData(raw: string | undefined): ProposalData | null {
-  if (!raw) return null;
-  try {
-    const json = atob(raw);
-    return JSON.parse(json) as ProposalData;
-  } catch {
-    return null;
-  }
-}
+
 
 function PrintPage() {
   const { data } = useSearch({ from: "/print" });
