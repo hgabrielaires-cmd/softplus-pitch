@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Copy, ExternalLink, Plus, Printer, Trash2 } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { Copy, ExternalLink, FolderOpen, Plus, Printer, Save, Trash2 } from "lucide-react";
 import { ProposalDocument } from "@/components/proposal/ProposalDocument";
 import { scenarios } from "@/data/scenarios";
 import { encodeProposalData } from "@/lib/proposal-codec";
+import { createProposta, getProposta, updateProposta } from "@/lib/propostas";
 import { cn } from "@/lib/utils";
 import type {
   ModuleCategory,
@@ -13,6 +14,8 @@ import type {
 } from "@/types/proposal";
 
 export const Route = createFileRoute("/gerar")({
+  validateSearch: (search: Record<string, unknown>): { id?: string } =>
+    typeof search['id'] === "string" && search['id'] ? { id: search['id'] } : {},
   head: () => ({
     meta: [
       { title: "Montar Proposta Comercial | Softplus" },
@@ -33,6 +36,7 @@ export const Route = createFileRoute("/gerar")({
   }),
   component: GeneratorPage,
 });
+
 
 const CATEGORIES: ModuleCategory[] = [
   "operacao",
@@ -279,8 +283,19 @@ function ModuleEditor({
 /* ---------- página ---------- */
 
 function GeneratorPage() {
+  const { id } = Route.useSearch();
+  const navigate = useNavigate();
   const [data, setData] = useState<ProposalData>(blank);
   const [copied, setCopied] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [savedMsg, setSavedMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+    getProposta(id)
+      .then((row) => setData(row.data))
+      .catch(() => setSavedMsg("Não foi possível carregar a proposta salva."));
+  }, [id]);
 
   const set = <K extends keyof ProposalData>(key: K, value: ProposalData[K]) =>
     setData((d) => ({ ...d, [key]: value }));
@@ -294,6 +309,26 @@ function GeneratorPage() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      if (id) {
+        await updateProposta(id, data);
+        setSavedMsg("Proposta atualizada!");
+      } else {
+        const newId = await createProposta(data);
+        setSavedMsg("Proposta salva!");
+        void navigate({ to: "/gerar", search: { id: newId } });
+      }
+    } catch (e) {
+      setSavedMsg(`Erro ao salvar: ${(e as Error).message}`);
+    } finally {
+      setSaving(false);
+      window.setTimeout(() => setSavedMsg(null), 2500);
+    }
+  };
+
 
   return (
     <main className="min-h-screen">
@@ -318,17 +353,36 @@ function GeneratorPage() {
               </button>
             ))}
             <button
-              onClick={() => setData(blank)}
+              onClick={() => {
+                setData(blank);
+                void navigate({ to: "/gerar", search: {} });
+              }}
               className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"
             >
               Limpar
             </button>
+            <Link
+              to="/propostas"
+              className="border-line text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold"
+            >
+              <FolderOpen className="size-3.5" /> Propostas salvas
+            </Link>
+            <button
+              onClick={save}
+              disabled={saving}
+              className="border-cyan text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold disabled:opacity-50"
+            >
+              <Save className="size-3.5" />{" "}
+              {saving ? "Salvando…" : id ? "Salvar alterações" : "Salvar proposta"}
+            </button>
+            {savedMsg && <span className="text-cyan text-[11px] font-bold">{savedMsg}</span>}
             <button
               onClick={copyLink}
               className="border-line text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold"
             >
               <Copy className="size-3.5" /> {copied ? "Link copiado!" : "Copiar link PDF"}
             </button>
+
             <a
               href={printUrl}
               target="_blank"

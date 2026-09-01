@@ -7,3 +7,4 @@
 - [x] Criar rota `/print` para geração de PDF via Browserless com `data` em base64
 
 - [x] Corrigir impressão/PDF quando aberta pelo celular (layout fixo A4 paisagem no print)
+- [x] Salvar propostas no banco (Cloud) e consultar/alterar em /propostas
