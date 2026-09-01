@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GerarRouteImport } from './routes/gerar'
 import { Route as PrintRouteImport } from './routes/print'
+import { Route as PropostasRouteImport } from './routes/propostas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const PrintRoute = PrintRouteImport.update({
   path: '/print',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PropostasRoute = PropostasRouteImport.update({
+  id: '/propostas',
+  path: '/propostas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
+  '/propostas': typeof PropostasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
+  '/propostas': typeof PropostasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/gerar': typeof GerarRoute
   '/print': typeof PrintRoute
+  '/propostas': typeof PropostasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gerar' | '/print'
+  fullPaths: '/' | '/gerar' | '/print' | '/propostas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gerar' | '/print'
-  id: '__root__' | '/' | '/gerar' | '/print'
+  to: '/' | '/gerar' | '/print' | '/propostas'
+  id: '__root__' | '/' | '/gerar' | '/print' | '/propostas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GerarRoute: typeof GerarRoute
   PrintRoute: typeof PrintRoute
+  PropostasRoute: typeof PropostasRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrintRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/propostas': {
+      id: '/propostas'
+      path: '/propostas'
+      fullPath: '/propostas'
+      preLoaderRoute: typeof PropostasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GerarRoute: GerarRoute,
   PrintRoute: PrintRoute,
+  PropostasRoute: PropostasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

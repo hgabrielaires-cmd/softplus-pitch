@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Copy, ExternalLink, Plus, Printer, Trash2 } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { Copy, ExternalLink, FolderOpen, Plus, Printer, Save, Trash2 } from "lucide-react";
 import { ProposalDocument } from "@/components/proposal/ProposalDocument";
 import { scenarios } from "@/data/scenarios";
 import { encodeProposalData } from "@/lib/proposal-codec";
+import { createProposta, getProposta, updateProposta } from "@/lib/propostas";
 import { cn } from "@/lib/utils";
 import type {
   ModuleCategory,
@@ -13,6 +14,8 @@ import type {
 } from "@/types/proposal";
 
 export const Route = createFileRoute("/gerar")({
+  validateSearch: (search: Record<string, unknown>): { id?: string } =>
+    typeof search['id'] === "string" && search['id'] ? { id: search['id'] } : {},
   head: () => ({
     meta: [
       { title: "Montar Proposta Comercial | Softplus" },
@@ -33,6 +36,7 @@ export const Route = createFileRoute("/gerar")({
   }),
   component: GeneratorPage,
 });
+
 
 const CATEGORIES: ModuleCategory[] = [
   "operacao",
