@@ -251,9 +251,29 @@
     min-height: 210mm;
   }
 
-  .a4-page:last-child {
-    break-after: auto;
+  .a4-page:last-child,
+  .a4-page:last-of-type,
+  .a4-scaler > *:last-child,
+  .print-root > *:last-child {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
+
+  .a4-scaler,
+  .print-root {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+
 
   * {
     -webkit-print-color-adjust: exact !important;
