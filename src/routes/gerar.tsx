@@ -349,18 +349,9 @@ function GeneratorPage() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {scenarios.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setData(structuredClone(s.data) as ProposalData)}
-                className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"
-              >
-                Carregar {s.label}
-              </button>
-            ))}
             <button
               onClick={() => {
-                setData(blank);
+                setData(modelo3());
                 void navigate({ to: "/gerar", search: {} });
               }}
               className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"
