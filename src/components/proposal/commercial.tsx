@@ -86,7 +86,7 @@ export function DiscountHighlight({
     <div className="avoid-break bg-gradient-navy shadow-hero relative overflow-hidden rounded-2xl">
       <div className="grid-graphic absolute inset-0 opacity-50" />
       <div className="halo-graphic absolute inset-0" />
-      <div className="relative p-6">
+      <div className="relative p-5">
         <div className="text-cyan-soft flex items-center gap-2 text-[9px] font-bold tracking-[0.22em] uppercase">
           <span className="bg-gradient-cyan h-[3px] w-6 rounded-full" />
           {promo.label}
@@ -145,7 +145,7 @@ export function ImplementationCard({
   const impl = data.implementation;
 
   return (
-    <div className="avoid-break border-line bg-card shadow-card rounded-2xl border p-5">
+    <div className="avoid-break border-line bg-card shadow-card rounded-2xl border p-4">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-5">
         <div className="min-w-0">
           <div className="flex items-center gap-2.5">

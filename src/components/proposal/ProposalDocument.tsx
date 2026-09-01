@@ -13,7 +13,7 @@ import {
 
 const FEATURES_FIRST_PAGE = 4;
 const FEATURES_PER_PAGE = 8;
-const MODULES_PER_PAGE = 4;
+const MODULES_PER_PAGE = 6;
 const OPTIONALS_PER_PAGE = 6;
 
 /**

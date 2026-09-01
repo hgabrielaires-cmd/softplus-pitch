@@ -143,7 +143,7 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
       </div>
 
       <div className="grid grid-cols-[1.15fr_1fr] items-stretch gap-4">
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-6">
+        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
           <div className="grid-graphic absolute inset-0 opacity-50" />
           <div className="halo-graphic absolute inset-0" />
           <div className="relative">
@@ -176,7 +176,7 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
 
         <ModuleImageSlot
           label="Imagem institucional"
-          ratio="min-h-[62mm]"
+          ratio="min-h-[46mm]"
           image={data.meta.coverImage?.src ? undefined : undefined}
         />
       </div>
@@ -247,7 +247,7 @@ export function ModulesPage({
                 "Módulos adicionais já contratados nesta proposta e somados à mensalidade.",
             })}
       />
-      <div className="grid grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-3 gap-3.5">
         {modules.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
