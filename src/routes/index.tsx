@@ -42,13 +42,13 @@ function Index() {
             to="/gerar"
             className="bg-gradient-cyan text-navy-deep inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[13px] font-bold"
           >
-            <Plus className="size-4" /> Nova proposta
+            <Plus className="size-4" /> Gerar Proposta
           </Link>
           <Link
             to="/propostas"
             className="border-line text-navy inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-[13px] font-bold"
           >
-            <FolderOpen className="size-4" /> Consultar propostas
+            <FolderOpen className="size-4" /> Propostas Salvas
           </Link>
         </div>
       </div>
