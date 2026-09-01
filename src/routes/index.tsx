@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Printer } from "lucide-react";
 import { ProposalDocument } from "@/components/proposal/ProposalDocument";
@@ -58,6 +58,12 @@ function Index() {
                 {s.label}
               </button>
             ))}
+            <Link
+              to="/gerar"
+              className="border-line text-navy rounded-full border px-3 py-1.5 text-[11px] font-bold"
+            >
+              Montar proposta
+            </Link>
             <button
               onClick={() => window.print()}
               className="bg-gradient-cyan text-navy-deep inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold"
