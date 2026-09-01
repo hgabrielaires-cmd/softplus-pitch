@@ -1,4 +1,5 @@
 import { Boxes, Brain, ChefHat, CreditCard, LineChart, Store, Truck } from "lucide-react";
+import ecosystemAsset from "@/assets/softplus-ecossistema.png.asset.json";
 import type { ProposalData, ProposalTotals } from "@/types/proposal";
 import { PageContainer, type PageMeta } from "./PageContainer";
 import { SectionTitle, SoftplusLogo } from "./brand";
@@ -143,7 +144,7 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
       </div>
 
       <div className="grid grid-cols-[1.15fr_1fr] items-stretch gap-4">
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-6">
+        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
           <div className="grid-graphic absolute inset-0 opacity-50" />
           <div className="halo-graphic absolute inset-0" />
           <div className="relative">
@@ -176,7 +177,7 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
 
         <ModuleImageSlot
           label="Imagem institucional"
-          ratio="min-h-[62mm]"
+          ratio="min-h-[46mm]"
           image={data.meta.coverImage?.src ? undefined : undefined}
         />
       </div>
@@ -247,7 +248,7 @@ export function ModulesPage({
                 "Módulos adicionais já contratados nesta proposta e somados à mensalidade.",
             })}
       />
-      <div className="grid grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-3 gap-3.5">
         {modules.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
@@ -299,10 +300,16 @@ export function CommercialPage({
         title="Sua composição de investimento"
         description="Composição detalhada da mensalidade, implantação e condições de pagamento."
       />
-      <PriceSummary data={data} totals={totals} />
-      <DiscountHighlight data={data} totals={totals} />
-      <ImplementationCard data={data} totals={totals} />
-      <CommercialConditions data={data} />
+      <div className="grid flex-1 grid-cols-[1.25fr_1fr] items-start gap-4">
+        <div className="flex flex-col gap-4">
+          <PriceSummary data={data} totals={totals} />
+          <DiscountHighlight data={data} totals={totals} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <ImplementationCard data={data} totals={totals} />
+          <CommercialConditions data={data} />
+        </div>
+      </div>
     </PageContainer>
   );
 }
@@ -324,8 +331,16 @@ export function ClosingPage({
       />
       <FinalSummary data={data} totals={totals} />
 
+      <div className="avoid-break relative min-h-0 flex-1 overflow-hidden rounded-2xl">
+        <img
+          src={ecosystemAsset.url}
+          alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+          className="absolute inset-0 size-full object-cover"
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-3.5">
-        <div className="border-line bg-card shadow-card rounded-2xl border p-5">
+        <div className="border-line bg-card shadow-card rounded-2xl border p-4">
           <h3 className="text-navy-deep font-display text-[12px] font-bold">Próximos passos</h3>
           <ol className="mt-3 grid gap-2">
             {[
@@ -344,7 +359,7 @@ export function ClosingPage({
           </ol>
         </div>
 
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
+        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-4">
           <div className="halo-graphic absolute inset-0" />
           <div className="relative">
             <SoftplusLogo tone="light" />

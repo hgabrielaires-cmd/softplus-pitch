@@ -193,8 +193,8 @@
 /* ---------- Página A4 ---------- */
 
 @utility a4-page {
-  width: 210mm;
-  min-height: 297mm;
+  width: 297mm;
+  min-height: 210mm;
   background-color: var(--color-card);
   position: relative;
   overflow: hidden;
@@ -215,7 +215,7 @@
 }
 
 @page {
-  size: A4;
+  size: A4 landscape;
   margin: 0;
 }
 
@@ -246,9 +246,9 @@
     border: 0 !important;
     border-radius: 0 !important;
     margin: 0 !important;
-    width: 210mm;
-    height: 297mm;
-    min-height: 297mm;
+    width: 297mm;
+    height: 210mm;
+    min-height: 210mm;
   }
 
   .a4-page:last-child {

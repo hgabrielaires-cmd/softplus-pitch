@@ -36,7 +36,7 @@ export function PriceSummary({ data, totals }: { data: ProposalData; totals: Pro
       {rows.map((r) => (
         <div
           key={r.label}
-          className="border-line grid grid-cols-[minmax(0,1fr)_44px_78px_84px] items-center gap-2 border-b px-4 py-2.5 last:border-b-0"
+          className="border-line grid grid-cols-[minmax(0,1fr)_44px_78px_84px] items-center gap-2 border-b px-4 py-2 last:border-b-0"
         >
           <div className="min-w-0">
             <div className="text-navy-deep truncate text-[11px] font-bold">{r.label}</div>
@@ -86,7 +86,7 @@ export function DiscountHighlight({
     <div className="avoid-break bg-gradient-navy shadow-hero relative overflow-hidden rounded-2xl">
       <div className="grid-graphic absolute inset-0 opacity-50" />
       <div className="halo-graphic absolute inset-0" />
-      <div className="relative p-6">
+      <div className="relative p-5">
         <div className="text-cyan-soft flex items-center gap-2 text-[9px] font-bold tracking-[0.22em] uppercase">
           <span className="bg-gradient-cyan h-[3px] w-6 rounded-full" />
           {promo.label}
@@ -145,7 +145,7 @@ export function ImplementationCard({
   const impl = data.implementation;
 
   return (
-    <div className="avoid-break border-line bg-card shadow-card rounded-2xl border p-5">
+    <div className="avoid-break border-line bg-card shadow-card rounded-2xl border p-4">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-5">
         <div className="min-w-0">
           <div className="flex items-center gap-2.5">
@@ -219,7 +219,7 @@ export function CommercialConditions({ data }: { data: ProposalData }) {
   if (items.length === 0 && !c.notes?.length) return null;
 
   return (
-    <div className="avoid-break border-line bg-surface rounded-2xl border p-5">
+    <div className="avoid-break border-line bg-surface rounded-2xl border p-4">
       <h3 className="text-navy-deep font-display text-[12px] font-bold tracking-[0.16em] uppercase">
         Condições comerciais
       </h3>
@@ -260,7 +260,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
     <div className="avoid-break bg-gradient-navy shadow-hero relative overflow-hidden rounded-3xl">
       <div className="grid-graphic absolute inset-0 opacity-50" />
       <div className="relative grid grid-cols-3 divide-x divide-white/10">
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             O que está contratando
           </div>
@@ -273,7 +273,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             Mensalidade
           </div>
@@ -287,7 +287,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             Implantação
           </div>
