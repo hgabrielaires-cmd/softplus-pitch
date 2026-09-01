@@ -229,7 +229,15 @@
     background: #fff;
     margin: 0;
     padding: 0;
+    /* iOS/Android: impede o navegador de inflar fontes e reflow do layout */
+    width: 297mm !important;
+    min-width: 297mm !important;
+    max-width: 297mm !important;
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+    zoom: 1 !important;
   }
+
 
   .no-print {
     display: none !important;
