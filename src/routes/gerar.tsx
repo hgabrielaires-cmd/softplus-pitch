@@ -282,10 +282,16 @@ function ModuleEditor({
 
 /* ---------- página ---------- */
 
+/** Modelo padrão da Softplus: modelo 3 (desconto + opcionais). */
+const modelo3 = (): ProposalData =>
+  structuredClone(
+    (scenarios.find((s) => s.id === "promocional") ?? scenarios[0]).data,
+  ) as ProposalData;
+
 function GeneratorPage() {
   const { id } = Route.useSearch();
   const navigate = useNavigate();
-  const [data, setData] = useState<ProposalData>(blank);
+  const [data, setData] = useState<ProposalData>(() => modelo3());
   const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState<string | null>(null);
@@ -343,18 +349,9 @@ function GeneratorPage() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {scenarios.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setData(structuredClone(s.data) as ProposalData)}
-                className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"
-              >
-                Carregar {s.label}
-              </button>
-            ))}
             <button
               onClick={() => {
-                setData(blank);
+                setData(modelo3());
                 void navigate({ to: "/gerar", search: {} });
               }}
               className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"

@@ -1,24 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Printer } from "lucide-react";
-import { ProposalDocument } from "@/components/proposal/ProposalDocument";
-import { scenarios, type ScenarioId } from "@/data/scenarios";
-import { cn } from "@/lib/utils";
+import { FolderOpen, Plus } from "lucide-react";
+import { SoftplusLogo } from "@/components/proposal/brand";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Gerador de Propostas Comerciais | Softplus" },
+      { title: "Propostas Comerciais | Softplus" },
       {
         name: "description",
         content:
-          "Ambiente de homologação do gerador dinâmico de propostas comerciais Softplus: layout A4, impressão e PDF.",
+          "Menu do gerador de propostas comerciais Softplus: crie uma nova proposta ou consulte as propostas salvas.",
       },
-      { property: "og:title", content: "Gerador de Propostas Comerciais | Softplus" },
+      { property: "og:title", content: "Propostas Comerciais | Softplus" },
       {
         property: "og:description",
-        content:
-          "Proposta comercial 100% dinâmica em HTML/CSS, pronta para tela, impressão A4 e conversão em PDF.",
+        content: "Crie uma nova proposta comercial Softplus ou consulte as propostas já salvas.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -28,55 +24,32 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [scenarioId, setScenarioId] = useState<ScenarioId>("promocional");
-  const scenario = scenarios.find((s) => s.id === scenarioId) ?? scenarios[0];
-
   return (
-    <main className="min-h-screen">
-      <div className="no-print border-line bg-card/90 sticky top-0 z-10 border-b backdrop-blur">
-        <div className="mx-auto grid max-w-[240mm] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3 sm:flex sm:justify-between">
-          <div className="min-w-0">
-            <h1 className="text-navy-deep font-display truncate text-[15px] font-extrabold">
-              Gerador de Propostas · Softplus
-            </h1>
-            <p className="text-ink-muted truncate text-[11px]">
-              Ambiente de homologação · dados mockados · {scenario.data.meta.number}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {scenarios.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setScenarioId(s.id)}
-                className={cn(
-                  "rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors",
-                  s.id === scenarioId
-                    ? "bg-navy text-primary-foreground"
-                    : "bg-surface text-ink-muted hover:text-navy",
-                )}
-              >
-                {s.label}
-              </button>
-            ))}
-            <Link
-              to="/gerar"
-              className="border-line text-navy rounded-full border px-3 py-1.5 text-[11px] font-bold"
-            >
-              Montar proposta
-            </Link>
-            <button
-              onClick={() => window.print()}
-              className="bg-gradient-cyan text-navy-deep inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold"
-            >
-              <Printer className="size-3.5" strokeWidth={2.4} /> Imprimir / PDF
-            </button>
-          </div>
+    <main className="flex min-h-screen items-center justify-center px-5 py-12">
+      <div className="border-line bg-card shadow-card w-full max-w-md rounded-3xl border p-8 text-center">
+        <div className="flex justify-center">
+          <SoftplusLogo height={54} />
         </div>
-      </div>
+        <h1 className="text-navy-deep font-display mt-6 text-[20px] font-extrabold">
+          Propostas Comerciais
+        </h1>
+        <p className="text-ink-muted mt-1 text-[12px]">
+          Escolha uma opção para começar.
+        </p>
 
-      <div className="print-root flex flex-col items-center gap-8 px-4 py-8">
-        <div className="a4-scaler flex flex-col items-center gap-8">
-          <ProposalDocument key={scenario.id} data={scenario.data} />
+        <div className="mt-8 flex flex-col gap-3">
+          <Link
+            to="/gerar"
+            className="bg-gradient-cyan text-navy-deep inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[13px] font-bold"
+          >
+            <Plus className="size-4" /> Nova proposta
+          </Link>
+          <Link
+            to="/propostas"
+            className="border-line text-navy inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-[13px] font-bold"
+          >
+            <FolderOpen className="size-4" /> Consultar propostas
+          </Link>
         </div>
       </div>
     </main>
