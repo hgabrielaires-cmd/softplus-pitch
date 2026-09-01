@@ -4,8 +4,30 @@ import { brl, categoryLabel, moduleTotals } from "@/lib/proposal";
 import type { ProposalModule } from "@/types/proposal";
 import { ModuleIcon, ModuleImageSlot } from "./ModuleVisual";
 
+function includedQuantityBadge(module: ProposalModule): { text: string; isWide?: boolean } | null {
+  const name = module.name.toLowerCase();
+  const qty = module.quantity ?? 1;
+
+  if (name.includes("pdv") || name.includes("caixa")) {
+    return { text: "1x" };
+  }
+
+  if (name.includes("terminal")) {
+    if (qty <= 1) return { text: "1x" };
+    return { text: `combo com até ${qty}`, isWide: true };
+  }
+
+  if (qty > 1) {
+    return { text: `${qty}x` };
+  }
+
+  return null;
+}
+
 /** Recurso incluído no plano — leve, sem preço. */
 export function FeatureCard({ module }: { module: ProposalModule }) {
+  const badge = includedQuantityBadge(module);
+
   return (
     <article className="avoid-break border-line bg-card shadow-card flex gap-3 rounded-2xl border p-3.5">
       <ModuleIcon name={module.icon} />
@@ -14,9 +36,14 @@ export function FeatureCard({ module }: { module: ProposalModule }) {
           <h3 className="text-navy-deep font-display truncate text-[12px] font-bold">
             {module.name}
           </h3>
-          {module.quantity && module.quantity > 1 ? (
-            <span className="bg-gradient-cyan text-navy-deep shadow-card border-cyan/30 rounded-lg border px-2.5 py-1 text-[10.5px] font-extrabold text-tabular">
-              {module.quantity}x
+          {badge ? (
+            <span
+              className={cn(
+                "bg-gradient-cyan text-navy-deep shadow-card border-cyan/30 rounded-lg border px-2.5 py-1 font-extrabold text-tabular",
+                badge.isWide ? "text-[9px]" : "text-[10.5px]",
+              )}
+            >
+              {badge.text}
             </span>
           ) : null}
         </div>
