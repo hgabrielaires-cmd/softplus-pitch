@@ -285,7 +285,7 @@ function ModuleEditor({
 function GeneratorPage() {
   const { id } = Route.useSearch();
   const navigate = useNavigate();
-  const [data, setData] = useState<ProposalData>(blank);
+  const [data, setData] = useState<ProposalData>(() => modelo3());
   const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState<string | null>(null);
