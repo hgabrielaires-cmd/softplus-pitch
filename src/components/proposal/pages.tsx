@@ -1,4 +1,5 @@
 import { Boxes, Brain, ChefHat, CreditCard, LineChart, Store, Truck } from "lucide-react";
+import ecosystemAsset from "@/assets/softplus-ecossistema.png.asset.json";
 import type { ProposalData, ProposalTotals } from "@/types/proposal";
 import { PageContainer, type PageMeta } from "./PageContainer";
 import { SectionTitle, SoftplusLogo } from "./brand";
@@ -312,8 +313,6 @@ export function CommercialPage({
     </PageContainer>
   );
 }
-
-import ecosystemAsset from "@/assets/softplus-ecossistema.png.asset.json";
 
 export function ClosingPage({
   data,
