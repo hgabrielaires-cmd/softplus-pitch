@@ -193,8 +193,8 @@
 /* ---------- Página A4 ---------- */
 
 @utility a4-page {
-  width: 210mm;
-  min-height: 297mm;
+  width: 297mm;
+  min-height: 210mm;
   background-color: var(--color-card);
   position: relative;
   overflow: hidden;
