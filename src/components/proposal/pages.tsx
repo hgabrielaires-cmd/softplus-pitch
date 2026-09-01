@@ -216,8 +216,8 @@ export function SolutionPage({
         </>
       )}
 
-      <div>
       <div className="flex min-h-0 flex-1 flex-col">
+
         <h3 className="text-navy-deep keep-with-next text-[10px] font-bold tracking-[0.2em] uppercase">
           Recursos inclusos no plano
         </h3>
