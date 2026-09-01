@@ -273,14 +273,27 @@
     padding: 0 !important;
     margin: 0 !important;
     gap: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
+    /* mobile: nunca escalar/centralizar na impressão */
+    transform: none !important;
+    zoom: 1 !important;
+    width: 297mm !important;
+    max-width: none !important;
+    align-items: flex-start !important;
   }
 
-  main {
+  main,
+  main > div {
     margin: 0 !important;
     padding: 0 !important;
     min-height: 0 !important;
+    display: block !important;
+    width: 297mm !important;
+    max-width: none !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
   }
+
 
 
   * {
