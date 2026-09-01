@@ -253,7 +253,8 @@ export function ModulesPage({
                 "Módulos adicionais já contratados nesta proposta e somados à mensalidade.",
             })}
       />
-      <div className="grid grid-cols-3 gap-3.5">
+      <div className="grid flex-1 auto-rows-fr grid-cols-3 gap-3.5">
+
         {modules.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
