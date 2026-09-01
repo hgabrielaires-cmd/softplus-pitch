@@ -175,11 +175,14 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
           </div>
         </div>
 
-        <ModuleImageSlot
-          label="Imagem institucional"
-          ratio="min-h-[46mm]"
-          image={data.meta.coverImage?.src ? undefined : undefined}
-        />
+        <div className="border-line bg-card flex items-center justify-center overflow-hidden rounded-2xl border p-3">
+          <img
+            src={ecosystemAsset.url}
+            alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+            className="max-h-[46mm] w-full object-contain"
+          />
+        </div>
+
       </div>
     </PageContainer>
   );
