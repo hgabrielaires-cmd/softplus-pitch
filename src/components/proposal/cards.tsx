@@ -9,7 +9,7 @@ function includedQuantityBadge(module: ProposalModule): { text: string; isWide?:
   const qty = module.quantity ?? 1;
 
   if (name.includes("pdv") || name.includes("caixa")) {
-    return { text: "1x" };
+    return { text: `${Math.max(1, qty)}x` };
   }
 
   if (name.includes("terminal")) {
