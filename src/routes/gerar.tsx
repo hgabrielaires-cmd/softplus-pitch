@@ -283,8 +283,19 @@ function ModuleEditor({
 /* ---------- página ---------- */
 
 function GeneratorPage() {
+  const { id } = Route.useSearch();
+  const navigate = useNavigate();
   const [data, setData] = useState<ProposalData>(blank);
   const [copied, setCopied] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [savedMsg, setSavedMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+    getProposta(id)
+      .then((row) => setData(row.data))
+      .catch(() => setSavedMsg("Não foi possível carregar a proposta salva."));
+  }, [id]);
 
   const set = <K extends keyof ProposalData>(key: K, value: ProposalData[K]) =>
     setData((d) => ({ ...d, [key]: value }));
@@ -298,6 +309,26 @@ function GeneratorPage() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      if (id) {
+        await updateProposta(id, data);
+        setSavedMsg("Proposta atualizada!");
+      } else {
+        const newId = await createProposta(data);
+        setSavedMsg("Proposta salva!");
+        void navigate({ to: "/gerar", search: { id: newId } });
+      }
+    } catch (e) {
+      setSavedMsg(`Erro ao salvar: ${(e as Error).message}`);
+    } finally {
+      setSaving(false);
+      window.setTimeout(() => setSavedMsg(null), 2500);
+    }
+  };
+
 
   return (
     <main className="min-h-screen">
