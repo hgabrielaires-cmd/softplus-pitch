@@ -336,7 +336,7 @@ export function ClosingPage({
       <img
         src={ecosystemAsset.url}
         alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
-        className="size-full min-h-0 flex-1 object-cover"
+        className="size-full min-h-0 flex-1 object-contain"
       />
     </PageContainer>
   );
