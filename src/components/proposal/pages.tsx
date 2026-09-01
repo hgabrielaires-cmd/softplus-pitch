@@ -299,10 +299,16 @@ export function CommercialPage({
         title="Sua composição de investimento"
         description="Composição detalhada da mensalidade, implantação e condições de pagamento."
       />
-      <PriceSummary data={data} totals={totals} />
-      <DiscountHighlight data={data} totals={totals} />
-      <ImplementationCard data={data} totals={totals} />
-      <CommercialConditions data={data} />
+      <div className="grid flex-1 grid-cols-[1.25fr_1fr] items-start gap-4">
+        <div className="flex flex-col gap-4">
+          <PriceSummary data={data} totals={totals} />
+          <DiscountHighlight data={data} totals={totals} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <ImplementationCard data={data} totals={totals} />
+          <CommercialConditions data={data} />
+        </div>
+      </div>
     </PageContainer>
   );
 }
