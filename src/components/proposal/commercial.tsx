@@ -219,7 +219,7 @@ export function CommercialConditions({ data }: { data: ProposalData }) {
   if (items.length === 0 && !c.notes?.length) return null;
 
   return (
-    <div className="avoid-break border-line bg-surface rounded-2xl border p-5">
+    <div className="avoid-break border-line bg-surface rounded-2xl border p-4">
       <h3 className="text-navy-deep font-display text-[12px] font-bold tracking-[0.16em] uppercase">
         Condições comerciais
       </h3>
@@ -260,7 +260,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
     <div className="avoid-break bg-gradient-navy shadow-hero relative overflow-hidden rounded-3xl">
       <div className="grid-graphic absolute inset-0 opacity-50" />
       <div className="relative grid grid-cols-3 divide-x divide-white/10">
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             O que está contratando
           </div>
@@ -273,7 +273,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             Mensalidade
           </div>
@@ -287,7 +287,7 @@ export function FinalSummary({ data, totals }: { data: ProposalData; totals: Pro
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-5">
           <div className="text-cyan text-[8.5px] font-bold tracking-[0.2em] uppercase">
             Implantação
           </div>

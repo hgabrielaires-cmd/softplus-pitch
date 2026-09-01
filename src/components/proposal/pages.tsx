@@ -313,6 +313,8 @@ export function CommercialPage({
   );
 }
 
+import ecosystemAsset from "@/assets/softplus-ecossistema.png.asset.json";
+
 export function ClosingPage({
   data,
   totals,
