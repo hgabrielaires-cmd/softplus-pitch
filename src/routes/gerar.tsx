@@ -227,13 +227,25 @@ function ModuleEditor({
               label="Preço unit. (R$)"
               type="number"
               value={m.unitMonthlyPrice ?? ""}
-              onChange={(v) => update(i, { unitMonthlyPrice: v === "" ? undefined : Number(v) })}
+              onChange={(v) =>
+                onChange(
+                  modules.map((mm, idx) =>
+                    idx === i ? withOptNum(mm, "unitMonthlyPrice", v) : mm,
+                  ),
+                )
+              }
             />
             <Field
               label="Preço tabela (R$)"
               type="number"
               value={m.listMonthlyPrice ?? ""}
-              onChange={(v) => update(i, { listMonthlyPrice: v === "" ? undefined : Number(v) })}
+              onChange={(v) =>
+                onChange(
+                  modules.map((mm, idx) =>
+                    idx === i ? withOptNum(mm, "listMonthlyPrice", v) : mm,
+                  ),
+                )
+              }
             />
           </div>
 
@@ -435,10 +447,7 @@ function GeneratorPage() {
                 type="number"
                 value={data.plan.negotiatedMonthlyPrice ?? ""}
                 onChange={(v) =>
-                  set("plan", {
-                    ...data.plan,
-                    negotiatedMonthlyPrice: v === "" ? undefined : Number(v),
-                  })
+                  set("plan", withOptNum(data.plan, "negotiatedMonthlyPrice", v))
                 }
               />
             </div>
@@ -484,10 +493,7 @@ function GeneratorPage() {
                     type="number"
                     value={data.promotion.discountPercent ?? ""}
                     onChange={(v) =>
-                      set("promotion", {
-                        ...data.promotion!,
-                        discountPercent: v === "" ? undefined : Number(v),
-                      })
+                      set("promotion", withOptNum(data.promotion!, "discountPercent", v))
                     }
                   />
                   <Field
@@ -506,7 +512,13 @@ function GeneratorPage() {
                 />
                 <button
                   type="button"
-                  onClick={() => setData((d) => ({ ...d, promotion: undefined }))}
+                  onClick={() =>
+                    setData((d) => {
+                      const next = { ...d };
+                      delete next.promotion;
+                      return next;
+                    })
+                  }
                   className="text-ink-muted hover:text-navy text-[11px] font-semibold"
                 >
                   Remover promoção
@@ -555,10 +567,7 @@ function GeneratorPage() {
                 type="number"
                 value={data.implementation.negotiatedPrice ?? ""}
                 onChange={(v) =>
-                  set("implementation", {
-                    ...data.implementation,
-                    negotiatedPrice: v === "" ? undefined : Number(v),
-                  })
+                  set("implementation", withOptNum(data.implementation, "negotiatedPrice", v))
                 }
               />
             </div>
