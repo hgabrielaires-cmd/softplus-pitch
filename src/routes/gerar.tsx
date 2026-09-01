@@ -353,17 +353,36 @@ function GeneratorPage() {
               </button>
             ))}
             <button
-              onClick={() => setData(blank)}
+              onClick={() => {
+                setData(blank);
+                void navigate({ to: "/gerar", search: {} });
+              }}
               className="bg-surface text-ink-muted hover:text-navy rounded-full px-3 py-1.5 text-[11px] font-semibold"
             >
               Limpar
             </button>
+            <Link
+              to="/propostas"
+              className="border-line text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold"
+            >
+              <FolderOpen className="size-3.5" /> Propostas salvas
+            </Link>
+            <button
+              onClick={save}
+              disabled={saving}
+              className="border-cyan text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold disabled:opacity-50"
+            >
+              <Save className="size-3.5" />{" "}
+              {saving ? "Salvando…" : id ? "Salvar alterações" : "Salvar proposta"}
+            </button>
+            {savedMsg && <span className="text-cyan text-[11px] font-bold">{savedMsg}</span>}
             <button
               onClick={copyLink}
               className="border-line text-navy inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold"
             >
               <Copy className="size-3.5" /> {copied ? "Link copiado!" : "Copiar link PDF"}
             </button>
+
             <a
               href={printUrl}
               target="_blank"
