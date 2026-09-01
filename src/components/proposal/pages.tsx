@@ -143,46 +143,35 @@ export function EcosystemPage({ data, meta }: { data: ProposalData; meta: PageMe
         ))}
       </div>
 
-      <div className="grid grid-cols-[1.15fr_1fr] items-stretch gap-4">
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
-          <div className="grid-graphic absolute inset-0 opacity-50" />
-          <div className="halo-graphic absolute inset-0" />
-          <div className="relative">
-            <Boxes className="text-cyan size-6" strokeWidth={1.8} />
-            <h3 className="text-primary-foreground font-display mt-3 text-[18px] leading-tight font-extrabold">
-              Integração nativa entre todos os módulos
-            </h3>
-            <p className="text-cyan-soft mt-2 text-[10.5px] leading-relaxed">
-              Você contrata apenas o que precisa hoje e ativa novos módulos conforme a operação
-              cresce — sem migração, sem perder histórico.
-            </p>
-            <div className="mt-5 grid grid-cols-3 gap-3">
-              {[
-                { v: "100%", l: "Nuvem" },
-                { v: "24/7", l: "Disponibilidade" },
-                { v: "0", l: "Taxa por pedido" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="text-primary-foreground font-display text-[20px] font-extrabold text-tabular">
-                    {s.v}
-                  </div>
-                  <div className="text-cyan-soft text-[8.5px] font-semibold tracking-[0.16em] uppercase">
-                    {s.l}
-                  </div>
+      <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
+        <div className="grid-graphic absolute inset-0 opacity-50" />
+        <div className="halo-graphic absolute inset-0" />
+        <div className="relative">
+          <Boxes className="text-cyan size-6" strokeWidth={1.8} />
+          <h3 className="text-primary-foreground font-display mt-3 text-[18px] leading-tight font-extrabold">
+            Integração nativa entre todos os módulos
+          </h3>
+          <p className="text-cyan-soft mt-2 text-[10.5px] leading-relaxed">
+            Você contrata apenas o que precisa hoje e ativa novos módulos conforme a operação
+            cresce — sem migração, sem perder histórico.
+          </p>
+          <div className="mt-5 grid grid-cols-3 gap-3">
+            {[
+              { v: "100%", l: "Nuvem" },
+              { v: "24/7", l: "Disponibilidade" },
+              { v: "0", l: "Taxa por pedido" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="text-primary-foreground font-display text-[20px] font-extrabold text-tabular">
+                  {s.v}
                 </div>
-              ))}
-            </div>
+                <div className="text-cyan-soft text-[8.5px] font-semibold tracking-[0.16em] uppercase">
+                  {s.l}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="border-line bg-card flex items-center justify-center overflow-hidden rounded-2xl border p-3">
-          <img
-            src={ecosystemAsset.url}
-            alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
-            className="max-h-[46mm] w-full object-contain"
-          />
-        </div>
-
       </div>
     </PageContainer>
   );
