@@ -15,7 +15,7 @@ export function FeatureCard({ module }: { module: ProposalModule }) {
             {module.name}
           </h3>
           {module.quantity && module.quantity > 1 ? (
-            <span className="bg-navy text-primary-foreground rounded-full px-1.5 py-0.5 text-[8px] font-bold text-tabular">
+            <span className="bg-gradient-cyan text-navy-deep shadow-card border-cyan/30 rounded-lg border px-2.5 py-1 text-[10.5px] font-extrabold text-tabular">
               {module.quantity}x
             </span>
           ) : null}
