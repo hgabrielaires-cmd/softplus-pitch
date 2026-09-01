@@ -331,8 +331,16 @@ export function ClosingPage({
       />
       <FinalSummary data={data} totals={totals} />
 
+      <div className="avoid-break relative min-h-0 flex-1 overflow-hidden rounded-2xl">
+        <img
+          src={ecosystemAsset.url}
+          alt="Ecossistema Softplus: gestão web, PDV, monitor de pedidos, comanda eletrônica, delivery e autoatendimento"
+          className="absolute inset-0 size-full object-cover"
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-3.5">
-        <div className="border-line bg-card shadow-card rounded-2xl border p-5">
+        <div className="border-line bg-card shadow-card rounded-2xl border p-4">
           <h3 className="text-navy-deep font-display text-[12px] font-bold">Próximos passos</h3>
           <ol className="mt-3 grid gap-2">
             {[
