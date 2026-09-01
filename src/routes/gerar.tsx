@@ -88,6 +88,15 @@ const blank: ProposalData = {
 
 /* ---------- primitivos de formulário ---------- */
 
+/** Define (ou remove, quando vazio) uma propriedade numérica opcional. */
+function withOptNum<T extends object, K extends keyof T>(obj: T, key: K, raw: string): T {
+  const next = { ...obj };
+  if (raw === "") delete next[key];
+  else next[key] = Number(raw) as T[K];
+  return next;
+}
+
+
 const labelCls = "text-ink-muted text-[10px] font-semibold tracking-wide uppercase";
 const inputCls =
   "border-line bg-card text-navy-deep placeholder:text-ink-muted/60 w-full rounded-lg border px-2.5 py-1.5 text-[12px] outline-none focus:border-cyan";
