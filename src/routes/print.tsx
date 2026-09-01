@@ -29,15 +29,8 @@ export const Route = createFileRoute("/print")({
   component: PrintPage,
 });
 
-function decodeProposalData(raw: string | undefined): ProposalData | null {
-  if (!raw) return null;
-  try {
-    const json = atob(raw);
-    return JSON.parse(json) as ProposalData;
-  } catch {
-    return null;
-  }
-}
+import { decodeProposalData } from "@/lib/proposal-codec";
+
 
 function PrintPage() {
   const { data } = useSearch({ from: "/print" });
