@@ -12,7 +12,7 @@ export interface PageMeta {
 
 export function ProposalHeader({ meta }: { meta: PageMeta }) {
   return (
-    <div className="border-line flex items-start justify-between border-b px-[16mm] pt-[12mm] pb-4">
+    <div className="border-line flex items-start justify-between border-b px-[16mm] pt-[8mm] pb-3">
       <SoftplusLogo />
       <div className="text-right">
         <div className="text-navy-deep text-[10px] font-bold tracking-[0.2em] uppercase">
@@ -26,7 +26,7 @@ export function ProposalHeader({ meta }: { meta: PageMeta }) {
 
 export function ProposalFooter({ meta }: { meta: PageMeta }) {
   return (
-    <div className="border-line text-ink-muted mt-auto flex items-center justify-between border-t px-[16mm] pt-3 pb-[10mm] text-[9px]">
+    <div className="border-line text-ink-muted mt-auto flex items-center justify-between border-t px-[16mm] pt-2.5 pb-[7mm] text-[9px]">
       <span>softplus · tecnologia em sistemas · @softplustecnologia</span>
       <span>Emitida em {meta.issuedAt}</span>
       <span className="text-navy font-semibold text-tabular">
@@ -56,7 +56,7 @@ export function PageContainer({
   return (
     <section className={cn("a4-page shadow-card border-line border", className)}>
       {meta ? <ProposalHeader meta={meta} /> : null}
-      <div className="flex flex-1 flex-col gap-7 px-[16mm] py-[10mm]">{children}</div>
+      <div className="flex flex-1 flex-col gap-5 px-[16mm] py-[7mm]">{children}</div>
       {meta ? <ProposalFooter meta={meta} /> : null}
     </section>
   );

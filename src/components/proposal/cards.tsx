@@ -45,8 +45,8 @@ export function ModuleCard({ module }: { module: ProposalModule }) {
 
   return (
     <article className="avoid-break border-line bg-card shadow-card overflow-hidden rounded-2xl border">
-      <ModuleImageSlot image={module.image} label={module.name} ratio="aspect-[16/7]" />
-      <div className="flex flex-col gap-2 p-3.5">
+      <ModuleImageSlot image={module.image} label={module.name} ratio="aspect-[16/5]" />
+      <div className="flex flex-col gap-1.5 p-3">
         <div className="flex items-start gap-3">
           <ModuleIcon name={module.icon} />
           <div className="min-w-0 flex-1">
