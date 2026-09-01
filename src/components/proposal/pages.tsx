@@ -359,7 +359,7 @@ export function ClosingPage({
           </ol>
         </div>
 
-        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-5">
+        <div className="bg-gradient-navy relative overflow-hidden rounded-2xl p-4">
           <div className="halo-graphic absolute inset-0" />
           <div className="relative">
             <SoftplusLogo tone="light" />
