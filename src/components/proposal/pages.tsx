@@ -277,7 +277,7 @@ export function OptionalsPage({
         title="Módulos opcionais, quando fizer sentido"
         description="Sugestões que não estão inclusas nesta contratação e não compõem o total mensal. Podem ser ativadas a qualquer momento."
       />
-      <div className="grid flex-1 auto-rows-fr grid-cols-2 gap-3.5">
+      <div className="my-auto grid grid-cols-2 gap-3.5">
         {modules.map((m) => (
           <OptionalModuleCard key={m.id} module={m} />
         ))}
